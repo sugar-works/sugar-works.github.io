@@ -695,7 +695,7 @@ img.src=cutPath(t,st.i);img.alt=t.title+" "+(st.i+1)+"번째 컷";
 cnt.textContent=(st.i+1)+" / "+t.cuts;
 prev.disabled=st.i===0;next.disabled=st.i===t.cuts-1;
 vwMeta.textContent=st.vertical?"세로 보기 — 모두 이어서 볼 수 있어요. 상하로 스크롤해 주세요.":t.desc;
-if(st.vertical&&fresh||st.vertical&&!vert.childElementCount)fillVertical(t);
+if(st.vertical&&(fresh||vert.dataset.toon!==String(st.ti)||!vert.childElementCount)){vert.dataset.toon=String(st.ti);fillVertical(t)}
 if(!st.vertical){if(st.i+1<t.cuts){var n=new Image();n.src=cutPath(t,st.i+1)}}
 vwRow.innerHTML="";
 TOONS.forEach(function(x,idx){var b=el("button","vw-btn",x.title);b.type="button";b.setAttribute("aria-pressed",String(idx===st.ti));b.addEventListener("click",function(){st.ti=idx;st.i=0;st.vertical=false;showToon(true)});vwRow.appendChild(b)});
